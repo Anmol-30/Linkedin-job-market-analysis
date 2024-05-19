@@ -3,8 +3,6 @@
 
 # # Linkedin Jobs - Web Scraping
 
-# In[ ]:
-
 
 from selenium import webdriver
 import time
@@ -16,15 +14,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
-
-# In[3]:
-
-
 url1 = 'https://www.linkedin.com/jobs/search/?currentJobId=3919096655&geoId=105214831&keywords=marketing%20data%20analyst&location=Bengaluru%2C%20Karnataka%2C%20India&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true'
-
-
-# In[5]:
-
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -41,12 +31,10 @@ driver = webdriver.Chrome(options=chrome_options)
 driver.get(url1)
 driver.implicitly_wait(10)
 
-
 a = True
 i=0
 
 while (a):
-    
     try: 
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(0.5)  # Decreased wait time for scrolling animation
@@ -63,16 +51,13 @@ while (a):
         
         if not button.is_displayed():
             pass
-        
         else:
             i+=1
-            
         if i>0:
             if not button.is_displayed():
                 a = False
-            
+                
     except Exception as e:
-        
         print("Exception occurred:", e)
         pass
 
@@ -82,25 +67,19 @@ n = driver.find_elements(By.XPATH, '//*[@id="main-content"]/section[2]/ul/li')
 x = len(n)
 x
 
-
 companyname = []
 titlename = []
 dateposted = []
 
 for j in range(x):
-    
-    #print(j)
     company = driver.find_elements(By.CLASS_NAME, 'base-search-card__subtitle')[j].text
-    
     companyname.append(company)
     
     title = driver.find_elements(By.CLASS_NAME, 'base-search-card__title')[j].text
     titlename.append(title)
-    
 
 #print("companyname - ", companyname, "\n")
 #print("\n", "titlename - ", titlename)
-
 
 listoflinks = []
 findlink = driver.find_elements(By.CLASS_NAME, 'base-card__full-link')
@@ -108,22 +87,15 @@ findlink = driver.find_elements(By.CLASS_NAME, 'base-card__full-link')
 for k in findlink:
     listoflinks.append(k.get_attribute('href'))
     
-
 datetime = []
 dates = driver.find_elements(By.CLASS_NAME, 'job-search-card__listdate')
 
 for p in dates:
     datetime.append(p.get_attribute('datetime'))
-     
-    
 #print("\n", "date posted - ", datetime)
 
 
-# In[7]:
-
-
 companyfinal = pd.DataFrame(companyname, columns=["company"])
-
 titlefinal = pd.DataFrame(titlename, columns=["title"])
 
 final = companyfinal.join(titlefinal)
@@ -140,50 +112,16 @@ output
 
 # # Exploratory Data Analysis
 
-# In[8]:
-
-
 output.to_csv("linkedinjobsoutput.csv")
-
-
-# In[9]:
-
 
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-
-# In[10]:
-
-
 output.info()
-
-
-# In[11]:
-
-
 output.describe()
-
-
-# In[12]:
-
-
 output.isnull().sum()
-
-
-# In[13]:
-
-
 output.nunique()
-
-
-# In[40]:
-
-
 output.sort_values(by="posting_date",ascending=False).head()
-
-
-# In[39]:
 
 
 # Display value counts for categorical variables
@@ -194,9 +132,6 @@ for col in categorical_cols:
 
 
 # # DATA VISUALIZATION
-
-# In[37]:
-
 
 # Get the top 10 hiring companies
 top_hiring_companies = output['company'].value_counts().head(10)
@@ -210,10 +145,6 @@ plt.ylabel('Number of Job Postings')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
-
-
-# In[29]:
-
 
 start_date = '2024-04-18'
 end_date = '2024-04-30'
@@ -238,8 +169,6 @@ plt.tight_layout()  # Adjust layout to prevent overlap
 plt.show()
 
 
-# In[33]:
-
 
 # Define the job titles you want to include in the pie chart
 selected_titles = ['Business Finance Analyst', 'Business Data Analyst', 'Marketing Analyst', 'Business Advisory Analyst']
@@ -256,9 +185,6 @@ plt.pie(title_counts, labels=title_counts.index, autopct='%1.1f%%', startangle=1
 plt.title('Distribution of Selected Job Titles')
 plt.axis('equal') 
 plt.show()
-
-
-# In[36]:
 
 
 # Calculate length of job descriptions
