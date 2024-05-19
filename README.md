@@ -5,6 +5,7 @@
 # Introduction
 As LinkedIn remains a cornerstone for job seekers and recruiters, this project embarks on a journey to delve into the intricate dynamics of job trends across various domains and locations.
 
+
 # Problem Statement 💡
 The core aim of the project is to meticulously analyze the nuanced distribution of parameters such as job titles, companies, and posting dates on LinkedIn. This endeavor seeks to uncover pivotal trends and patterns within the dynamic job market landscape.
 
@@ -12,15 +13,20 @@ The core aim of the project is to meticulously analyze the nuanced distribution 
 # Code Preview
 ![image](https://github.com/Anmol-30/Linkedin-job-market-analysis/assets/57291255/0fedeb15-8ed8-472f-98dd-e5a82aa13783)
 
+
 # Pre-requisites
+Tools used 🛠️ :
 - Python
 - Selenium
 - Pandas
 - Seaborn
 - Matplotlib
 
+Linkedin url used :
+https://www.linkedin.com/jobs/search/?currentJobId=3919096655&geoId=105214831&keywords=marketing%20data%20analyst&location=Bengaluru%2C%20Karnataka%2C%20India&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true
 
-Linkedin url used - https://www.linkedin.com/jobs/search/?currentJobId=3919096655&geoId=105214831&keywords=marketing%20data%20analyst&location=Bengaluru%2C%20Karnataka%2C%20India&origin=JOB_SEARCH_PAGE_LOCATION_AUTOCOMPLETE&refresh=true
+References :
+https://www.youtube.com/@analyst_adithya
 
 
 # Conclusion
